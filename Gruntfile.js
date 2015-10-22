@@ -55,14 +55,15 @@ module.exports = function (grunt) {
            expand: true,
            cwd: 'css/',
            src: ['*.css', '!*.min.css'],
-           dest: 'css/',
-           ext: '.min.css'
+           dest: 'build/',
+           ext: '.min.css',
+           extDot: 'first'
          },  
          combine: {  
              files: {  
                  'css/default.css': [  
-                     "css/all.css",   
-                     "css/index.css"  
+                     "css/color.css",   
+                     "css/dialog.css"  
                  ]  
              }  
          } 
