@@ -20,5 +20,50 @@
   7. 在Gruntfile.js文件中的grunt.initConfig方法中配置任务参数，加载插件，执行任务
   8. 执行grunt命令
   
-  
-  
+ for example:
+
+  配置Gruntfile.js:
+
+  module.exports = function(grunt){
+
+	grunt.initConfig({
+
+		pkg:grunt.file.readJSON('package.json'),
+               
+
+		uglify:{
+			options:{
+				stripBanners: true,
+				banner: '/*! <%=pkg.name%>-<%=pkg.version%> */'
+			},     
+
+            release: {                          //合并压缩a.js和b.js
+                files: {
+                    'index.min.js': ['scripts/**/*.js','scripts/*.js']
+                }
+            }
+			
+		},
+
+		cssmin: {
+            options: {  
+                keepSpecialComments: 0  
+            },  
+            combine: {  
+                files: {  
+                    'index.min.css': ["css/*.css"]  
+                }  
+            }
+        }
+
+      
+	});
+
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+
+
+	grunt.registerTask('default',['uglify','cssmin']);
+
+}
