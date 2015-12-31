@@ -11,6 +11,24 @@ module.exports = function (grunt) {
             build: {//任务一：压缩a.js，不混淆变量名，保留注释，添加banner和footer
                 src: 'src/test.js',
                 dest:'build/<%=pkg.name%>-<%=pkg.version%>.js.min.js'
+            },
+            /*build: {//压缩a.js，不混淆变量名，保留注释，添加banner和footer
+                src: 'src/test.js',
+                dest:'build/<%=pkg.name%>-<%=pkg.version%>.js.min.js'
+            },*/
+            /*buildall: {                          // 按原文件结构压缩js文件夹内所有JS文件
+                files: [{
+                    expand:true,
+                    cwd:'public/',//js目录下
+                    src:'*.js',//所有js文件
+                    dest: 'lib/',//输出到此目录下
+                    ext: 'xxtreader-latest.min.js'
+                }]
+            }*/
+            release: {                          //合并且压缩XXT.js和main.js
+                files: {
+                    'lib/xxtreader-latest.min.js': ['lib/XXT.js', 'lib/main.js']
+                }
             }
      },
 
@@ -51,22 +69,11 @@ module.exports = function (grunt) {
          options: {  
              keepSpecialComments: 0  
          },
-         minify: {
-           expand: true,
-           cwd: 'css/',
-           src: ['*.css', '!*.min.css'],
-           dest: 'build/',
-           ext: '.min.css',
-           extDot: 'first'
-         },  
-         combine: {  
-             files: {  
-                 'css/default.css': [  
-                     "css/color.css",   
-                     "css/dialog.css"  
-                 ]  
-             }  
-         } 
+         combine: {                          //  合并且压缩userinfo.css,loading.css文件
+                files: {  
+                    'css/xxtreader-latest1.min.css': ["css/userinfo.css","loading.css"]  
+                }  
+         }
     }
 
  /*   //压缩图片
@@ -113,5 +120,5 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask('default',['jshint','concat','uglify','cssmin','watch']);
+  grunt.registerTask('default',['jshint','concat','uglify:release','cssmin','watch']);
 };
