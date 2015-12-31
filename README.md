@@ -11,13 +11,14 @@
   入门教程：http://www.cnblogs.com/wangfupeng1988/p/4561993.html
   
   使用步骤：
-  
   1. 安装nodejs
   2. npm install -g grunt-cli （将grunt-cli安装到全局环境中才能使用grunt）
   3. 在项目文件里创建package.json和Gruntfile.js文件
   4. 安装grunt  npm install grunt --save-dev
   5. 配置Gruntfile.js和package.json文件
-  6. 安装Grunt插件如 npm install grunt-contrib-uglify --save-dev
+  6. 安装Grunt插件  如 npm install grunt-contrib-uglify --save-dev, grunt-contrib-cssmin
+  7. 在Gruntfile.js文件中的grunt.initConfig方法中配置任务参数，加载插件，执行任务
+  8. 执行grunt命令
   
   
   
