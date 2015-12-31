@@ -20,9 +20,8 @@
   7. 在Gruntfile.js文件中的grunt.initConfig方法中配置任务参数，加载插件，执行任务
   8. 执行grunt命令
   
- for example:
 
-  配置Gruntfile.js:
+Gruntfile.js:
 
   module.exports = function(grunt){
 
@@ -37,33 +36,32 @@
 				banner: '/*! <%=pkg.name%>-<%=pkg.version%> */'
 			},     
 
-            release: {                          //合并压缩a.js和b.js
-                files: {
-                    'index.min.js': ['scripts/**/*.js','scripts/*.js']
-                }
-            }
+                release: {                          //合并压缩js文件
+                        files: {
+                               'index.min.js': ['scripts/**/*.js','scripts/*.js']
+                              }
+                        }
 			
 		},
 
 		cssmin: {
-            options: {  
-                keepSpecialComments: 0  
-            },  
-            combine: {  
-                files: {  
-                    'index.min.css': ["css/*.css"]  
-                }  
-            }
-        }
-
-      
+                        options: {  
+                                 keepSpecialComments: 0  
+                        },  
+            
+                combine: {                         //合并且压缩css文件
+                        files: {  
+                              'index.min.css': ["css/*.css"]  
+                               }  
+                        }
+                }
 	});
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
+        grunt.loadNpmTasks('grunt-contrib-uglify');   // 加载相应的插件
+        grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 
 
-	grunt.registerTask('default',['uglify','cssmin']);
+	grunt.registerTask('default',['uglify','cssmin']);  // 执行任务
 
 }
